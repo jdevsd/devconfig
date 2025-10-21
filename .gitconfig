@@ -88,13 +88,16 @@
     # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
     whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 
-    # Make `git rebase` safer on OS X
+    # Make `git rebase` safer on macOS
     # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
     trustctime = false
 
     # Prevent showing files whose names contain non-ASCII symbols as unversioned.
     # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
     precomposeunicode = false
+
+    # Use editor from environment
+    editor = vim
 
 [color]
 
@@ -125,6 +128,10 @@
 
     # Detect copies as well as renames
     renames = copies
+    # Use better diff algorithm
+    algorithm = histogram
+    # Show submodule changes in diff
+    submodule = log
 
 [help]
 
@@ -135,15 +142,18 @@
 
     # Include summaries of merged commits in newly created merge commit messages
     log = true
+    # Use better merge conflict style
+    conflictStyle = diff3
 
 [push]
 
-    # Use the Git 1.x.x default to avoid errors on machines with old Git
-    # installations. To use `simple` instead, add this to your `~/.extra` file:
-    # `git config --global push.default simple`. See http://git.io/mMah-w.
-    default = matching
+    # Use simple push mode (default in modern Git)
+    # Only push the current branch to the branch with the same name
+    default = simple
     # Make `git push` push relevant annotated tags when pushing branches out.
     followTags = true
+    # Automatically set up remote tracking
+    autoSetupRemote = true
 
 # URL shorthands
 
@@ -166,3 +176,29 @@
 [url "git://gist.github.com/"]
 
     insteadOf = "gist:"
+
+[init]
+
+    # Use 'main' as default branch name
+    defaultBranch = main
+
+[pull]
+
+    # Use rebase instead of merge when pulling
+    rebase = false
+    # Fast-forward only by default
+    ff = only
+
+[fetch]
+
+    # Automatically prune deleted remote branches
+    prune = true
+    # Prune tags as well
+    pruneTags = true
+
+[rebase]
+
+    # Automatically stash before rebasing
+    autoStash = true
+    # Show diffstat after successful rebase
+    stat = true
